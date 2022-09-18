@@ -2,19 +2,18 @@ package com.sojapplication.controller;
 
 import com.sojapplication.model.SojRequest;
 import com.sojapplication.model.SojResponse;
+import com.sojapplication.model.VersionRequest;
+import com.sojapplication.model.VersionResponse;
 import com.sojapplication.service.SojService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SojController {
-
-    // Add a @Valid annotation and handle exception accordingly
 
     private final SojService sojService;
 
@@ -23,33 +22,39 @@ public class SojController {
         this.sojService = sojService;
     }
 
-    @GetMapping("/min")
+    @PostMapping("/min")
     public ResponseEntity<SojResponse> computeMin(@RequestBody final SojRequest request) {
-        SojResponse response = this.sojService.computeMin(request);
+        final SojResponse response = this.sojService.computeMin(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/max")
+    @PostMapping("/max")
     public ResponseEntity<SojResponse> computeMax(@RequestBody final SojRequest request) {
-        SojResponse response = this.sojService.computeMin(request);
+        final SojResponse response = this.sojService.computeMax(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/avg")
+    @PostMapping("/avg")
     public ResponseEntity<SojResponse> computeAverage(@RequestBody final SojRequest request) {
-        SojResponse response = this.sojService.computeMin(request);
+        final SojResponse response = this.sojService.computeAverage(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/median")
+    @PostMapping("/median")
     public ResponseEntity<SojResponse> computeMedian(@RequestBody final SojRequest request) {
-        SojResponse response = this.sojService.computeMin(request);
+        final SojResponse response = this.sojService.computeMedian(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/percentile")
+    @PostMapping("/percentile")
     public ResponseEntity<SojResponse> computePercentile(@RequestBody final SojRequest request) {
-        SojResponse response = this.sojService.computeMin(request);
+        final SojResponse response = this.sojService.computePercentile(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/compare-versions")
+    public ResponseEntity<VersionResponse> compareVersions(@RequestBody final VersionRequest request) {
+        final VersionResponse response = this.sojService.compareVersions(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

@@ -5,15 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SojRequest {
+public class VersionRequest {
 
-    private List<Integer> numbers;
-    private int quantifier;
-
+    private String version1;
+    private String version2;
+    
 }
