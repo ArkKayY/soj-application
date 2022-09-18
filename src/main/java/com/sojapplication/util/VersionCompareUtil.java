@@ -2,6 +2,13 @@ package com.sojapplication.util;
 
 public class VersionCompareUtil {
 
+    /**
+     * Compares the versions using nearest-rank method
+     *
+     * @param version1
+     * @param version2
+     * @return
+     */
     public static int compareVersions(final String version1, final String version2) {
         final String[] str1 = version1.split("\\.");
         final String[] str2 = version2.split("\\.");
