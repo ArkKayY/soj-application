@@ -3,11 +3,11 @@ package com.sojapplication.util;
 public class VersionCompareUtil {
 
     /**
-     * Compares the versions using nearest-rank method
+     * Compares two version numbers
      *
-     * @param version1
-     * @param version2
-     * @return
+     * @param version1 first version
+     * @param version2 second version
+     * @return version result containing a int value
      */
     public static int compareVersions(final String version1, final String version2) {
         final String[] str1 = version1.split("\\.");

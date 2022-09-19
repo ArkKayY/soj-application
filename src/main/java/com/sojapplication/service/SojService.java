@@ -2,7 +2,6 @@ package com.sojapplication.service;
 
 import com.sojapplication.model.SojRequest;
 import com.sojapplication.model.SojResponse;
-import com.sojapplication.model.VersionRequest;
 import com.sojapplication.model.VersionResponse;
 
 public interface SojService {
@@ -53,6 +52,6 @@ public interface SojService {
      * @param request input containing 2 versions
      * @return version result containing a int value
      */
-    VersionResponse compareVersions(VersionRequest request);
+    VersionResponse compareVersions(final String version1, final String version2);
 
 }

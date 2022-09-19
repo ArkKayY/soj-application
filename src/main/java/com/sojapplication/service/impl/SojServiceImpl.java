@@ -3,7 +3,6 @@ package com.sojapplication.service.impl;
 import com.sojapplication.exception.SojException;
 import com.sojapplication.model.SojRequest;
 import com.sojapplication.model.SojResponse;
-import com.sojapplication.model.VersionRequest;
 import com.sojapplication.model.VersionResponse;
 import com.sojapplication.service.SojService;
 import com.sojapplication.util.VersionCompareUtil;
@@ -115,9 +114,7 @@ public class SojServiceImpl implements SojService {
     }
 
     @Override
-    public VersionResponse compareVersions(final VersionRequest request) {
-        final String version1 = request.getVersion1();
-        final String version2 = request.getVersion2();
+    public VersionResponse compareVersions(final String version1, final String version2) {
         final int result = VersionCompareUtil.compareVersions(version1, version2);
         final VersionResponse response = VersionResponse.builder().versionResult(result).build();
         return response;

@@ -3,7 +3,6 @@ package com.sojapplication.service;
 import com.sojapplication.exception.SojException;
 import com.sojapplication.model.SojRequest;
 import com.sojapplication.model.SojResponse;
-import com.sojapplication.model.VersionRequest;
 import com.sojapplication.model.VersionResponse;
 import com.sojapplication.service.impl.SojServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -135,22 +134,25 @@ public class SojServiceTest {
 
     @Test
     public void testCompareVersions_Positive() {
-        final VersionRequest request = new VersionRequest("3.4", "1.2");
-        final VersionResponse response = this.sojService.compareVersions(request);
+        final String version1 = "3.4";
+        final String version2 = "1.2";
+        final VersionResponse response = this.sojService.compareVersions(version1, version2);
         assertEquals(response.getVersionResult(), 1);
     }
 
     @Test
     public void testCompareVersions_Negative() {
-        final VersionRequest request = new VersionRequest("1.2", "3.4");
-        final VersionResponse response = this.sojService.compareVersions(request);
+        final String version1 = "1.2";
+        final String version2 = "3.4";
+        final VersionResponse response = this.sojService.compareVersions(version1, version2);
         assertEquals(response.getVersionResult(), -1);
     }
 
     @Test
     public void testCompareVersions_Equal() {
-        final VersionRequest request = new VersionRequest("1.2", "1.2");
-        final VersionResponse response = this.sojService.compareVersions(request);
+        final String version1 = "1.2";
+        final String version2 = "1.2";
+        final VersionResponse response = this.sojService.compareVersions(version1, version2);
         assertEquals(response.getVersionResult(), 0);
     }
 

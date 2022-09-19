@@ -2,15 +2,12 @@ package com.sojapplication.controller;
 
 import com.sojapplication.model.SojRequest;
 import com.sojapplication.model.SojResponse;
-import com.sojapplication.model.VersionRequest;
 import com.sojapplication.model.VersionResponse;
 import com.sojapplication.service.SojService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SojController {
@@ -52,9 +49,10 @@ public class SojController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/compare-versions")
-    public ResponseEntity<VersionResponse> compareVersions(@RequestBody final VersionRequest request) {
-        final VersionResponse response = this.sojService.compareVersions(request);
+    @GetMapping("/compare")
+    public ResponseEntity<VersionResponse> compareVersions(@RequestParam("version1") final String version1,
+                                                           @RequestParam("version2") final String version2) {
+        final VersionResponse response = this.sojService.compareVersions(version1, version2);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sojapplication.exception.SojException;
 import com.sojapplication.model.SojRequest;
 import com.sojapplication.model.SojResponse;
-import com.sojapplication.model.VersionRequest;
 import com.sojapplication.model.VersionResponse;
 import com.sojapplication.service.SojService;
 import org.junit.jupiter.api.Test;
@@ -235,16 +234,18 @@ public class SojControllerTest {
 
     @Test
     public void testVersionCompare() throws Exception {
-        final VersionRequest request = new VersionRequest("1.2", "3.4");
+        final String version1 = "1.2";
+        final String version2 = "3.4";
         final int versionResult = -1;
         final VersionResponse response = VersionResponse.builder().versionResult(versionResult).build();
 
-        when(this.sojService.compareVersions(any(VersionRequest.class))).thenReturn(response);
+        when(this.sojService.compareVersions(any(String.class), any(String.class))).thenReturn(response);
 
-        final RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/compare-versions")
+        final RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/compare")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(this.objectMapper.writeValueAsString(request));
+                .param("version1", version1)
+                .param("version2", version2);
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().isOk())
