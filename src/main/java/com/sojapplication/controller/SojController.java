@@ -49,6 +49,9 @@ public class SojController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    /**
+        Exposed as API for testing purposes. Originally developed as a utility in a separate package.
+    */
     @GetMapping("/compare")
     public ResponseEntity<VersionResponse> compareVersions(@RequestParam("version1") final String version1,
                                                            @RequestParam("version2") final String version2) {
