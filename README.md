@@ -2,16 +2,9 @@
 
 # Compare versions - Utility
 
-HttpMethod: POST  
-URL: http://localhost:8080/compare-versions
+HttpMethod: GET  
+URL: http://localhost:8080/compare?version1=1.2&version2=3.4
 
-Sample Request:
-```
-{
-	"version1": "1.2",
-	"version2": "3.4"
-}
-```
 Sample Response:
 ```
 {
